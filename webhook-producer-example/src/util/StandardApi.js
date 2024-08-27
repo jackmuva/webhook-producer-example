@@ -5,10 +5,10 @@ export default class StandardApi {
 
     getWithAuth(url){
         return fetch(apiUrl.concat(url), {
-            method: 'GET',
+            method:'GET',
             headers:{
-                'accessToken': sessionStorage.accessToken.toString()
-            }
+                'accesstoken': sessionStorage.accessToken.toString()
+            },
         });
     }
 
@@ -16,9 +16,9 @@ export default class StandardApi {
         return fetch(apiUrl.concat(url), {
             method: 'DELETE',
             headers:{
-                'accessToken': sessionStorage.accessToken.toString()
+                'accesstoken': sessionStorage.accessToken.toString()
             },
-            item: JSON.stringify(payload)
+            body: JSON.stringify(payload)
         });
     }
 
@@ -28,9 +28,9 @@ export default class StandardApi {
             headers:{
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'accessToken': sessionStorage.accessToken.toString()
+                'accesstoken': sessionStorage.accessToken.toString()
             },
-            item: JSON.stringify(payload)
+            body: JSON.stringify(payload)
         });
     }
 
@@ -40,9 +40,9 @@ export default class StandardApi {
             headers:{
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'accessToken': sessionStorage.accessToken.toString()
+                'accesstoken': sessionStorage.accessToken.toString()
             },
-            item: JSON.stringify(payload)
+            body: JSON.stringify(payload)
         });
     }
 }

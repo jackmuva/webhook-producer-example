@@ -31,9 +31,9 @@ const HomePage = () => {
         <div>
             <h1 className={"text-2xl"}>Welcome to the webhook producer example</h1>
             <div>First configure an endpoint that will receive webhook messages</div>
-            <button onClick={redirectToEndpointConfig}> Configure Endpoints </button>
+            <button onClick={redirectToEndpointConfig}> Configure Endpoints</button>
             <div>Try sending an event</div>
-            <form onSubmit={sendEvent}>
+            <form>
                 <input
                     className="inputText"
                     id="message"
@@ -43,8 +43,8 @@ const HomePage = () => {
                     placeholder="Message"
                     required
                 />
-                <button type="submit">Send Message</button>
             </form>
+            <button onClick={sendEvent}>Send Message</button>
             <button onClick={handleLogout}>Logout</button>
         </div>
     );

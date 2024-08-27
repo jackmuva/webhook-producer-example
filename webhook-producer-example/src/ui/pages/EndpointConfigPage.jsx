@@ -5,6 +5,7 @@ import EndpointService from "../../services/EndpointService.js";
 const EndpointConfigPage = () => {
     const [newEndpoint, setNewEndpoint] = useState("");
     const [curEndpoints, setCurEndpoints] = useState([]);
+    const [added, setAdded] = useState(false);
 
     useEffect(() => {
         const fetchEndpoints = async() => {
@@ -13,15 +14,21 @@ const EndpointConfigPage = () => {
             setCurEndpoints(endpoints);
         }
         fetchEndpoints();
-    }, []);
+    }, [added]);
 
     async function sendEvent() {
         const endpointObject = {
             endpoint_id: uuidv4(),
             endpoint: newEndpoint,
-            key_location: ""
+            key_location: "n/a"
         }
-        await EndpointService.postEndpoint(endpointObject);
+        await EndpointService.postEndpoint(endpointObject).then(() => {
+            toggleAdded();
+        });
+    }
+
+    function toggleAdded(){
+        setAdded(!added);
     }
 
 
@@ -43,8 +50,8 @@ const EndpointConfigPage = () => {
                     placeholder="Endpoint URL"
                     required
                 />
-                <button type="submit">Save Endpoint</button>
             </form>
+            <button onClick={sendEvent}>Save Endpoint</button>
         </div>
     );
 }
